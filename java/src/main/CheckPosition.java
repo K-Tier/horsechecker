@@ -1,6 +1,6 @@
 package main;
 
-public class CheckId {
+public class CheckPosition {
     /**
      * 探索するIDが存在するブロック
      */
@@ -31,7 +31,7 @@ public class CheckId {
      * @param searchId このインスタンスが探索するブロック
      * @param wantedId このインスタンスが探索するID名
      */
-    public CheckId(String searchingArea, String wantedId) {
+    public CheckPosition(String searchingArea, String wantedId) {
         this.searchingArea = searchingArea;
         this.idName = "";
         this.wantedId = wantedId;
@@ -72,7 +72,7 @@ public class CheckId {
     }
 
     /**
-     * 探索するIDが存在するエリアか判断する
+     * 探索目標が存在するエリアか判断する
      * @param c Webサイトから読み取った文字
      * @return 目的のエリアに到達したか
      */
@@ -85,19 +85,21 @@ public class CheckId {
             }
             if(this.searchingArea.equals(this.value)) {
                 setFlag(true);
-                return flag;
             }
         }
         return flag;
     }
 
     /**
-     * 探索目標のIDか判断する
+     * 探索目標か判断する
      * @param i Webサイトから読み取った文字
-     * @return 目的のIDに到達したか
+     * @return 目的場所に到達したか
      */
-    public boolean searchIdName(char c) {
+    public boolean searchPosition(char c) {
         if(this.flag) {
+            if(idName.length() == wantedId.length()) {
+                setIdName("");
+            }
             if(c == this.wantedId.charAt(this.idName.length())) {
                 setIdName(this.idName + c);
             } else {
@@ -111,5 +113,11 @@ public class CheckId {
             searchArea(c);
         }
         return false;
+    }
+
+    public void initFlag() {
+        setFlag(false);
+        setValue("");
+        setIdName("");
     }
 }
