@@ -22,7 +22,7 @@ public class Horse {
      * XXX.Xkg
      */
     private double weight;
-    
+
     /**
      * オッズ
      * 0.0倍
@@ -131,7 +131,7 @@ public class Horse {
     }
     
     public String toString() {
-        return String.format("%-10s%-5s", this.getName(), this.getOdds());
+        return String.format("%s%-5s", this.getName(), this.getOdds());
         
     }
 }
